@@ -1,0 +1,178 @@
+\documentclass[9pt]{beamer}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{cite,enumerate,float,indentfirst}
+\usepackage[export]{adjustbox}
+\usepackage{environ}
+\usepackage{biblatex}
+\usepackage{soul}
+\usepackage{lipsum}
+
+\usetheme{Frankfurt}
+\usefonttheme{professionalfonts}
+\usecolortheme{whale}
+\newtheorem{ttheorem}{Теорема}
+
+% \addbibresource{refs.bib}
+\addbibresource{refs.bib}
+\setbeamercolor{footline}{fg=blue}
+
+\setbeamertemplate{footline}{
+	\leavevmode%
+	\hbox{%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{}%
+			Сотников А.Д., (МФТИ)
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{}%
+			\insertframenumber{}/\inserttotalframenumber \hspace*{2ex}
+	\end{beamercolorbox}}%
+	\vskip0pt%
+}
+
+\setbeamertemplate{frametitle}
+{\vskip-2pt
+	\leavevmode
+	\hbox{%
+		\begin{beamercolorbox}[wd=\paperwidth,ht=1.8ex,dp=1ex]{frametitle}%
+			\raggedright\hspace*{2em}\small\insertframetitle
+		\end{beamercolorbox}%
+	}%
+}
+
+\definecolor{beamer@blendedblue}{RGB}{68,22,196}
+
+\newcommand{\itemi}{\item[\checkmark]}
+
+\title{
+	Байесовский выбор архитектуры нейросетевой модели}
+\author{\small{%
+		Сотников А. Д., группа М05-004б}\\
+	Научный руководитель: к. ф-м н. Бахтеев О.Ю.\\
+	\vspace{30pt}%
+	Московский Физико-Технический институт%
+	\\
+	Кафедра интеллектуальных систем
+	\vspace{20pt}%
+}
+\date{\small{18 января, 2022}}
+
+\begin{document}
+	
+	\maketitle
+	
+	
+	\section{Введение}
+	
+	\begin{frame}{Мотивация}
+		\begin{itemize}
+			\item Многие современные архитектуры нейросетевых моделей, созданные экспертами  вручную, не демонстрируют наилучшее качество на разных наборах данных.
+			\item Поиск архитектуры нейронной сети (англ. Neural Architecture Search, NAS) — это процесс автоматизации проектирования архитектуры нейронной сети. Система NAS получает на вход набор данных и тип задачи (классификация, регрессия и т.д.), и на выходе дает архитектуру модели.
+			\item Предлагается реализовать процедуру автоматической генерации структуры нейронной сети, которая обобщала бы наилучшим образом конкретный набор данных (имела наилучшее качество).
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Базовый подход}
+		Пусть дано зафиксированное пространство поиска $\mathcal{O}$. В работе \cite{DBLP:journals/corr/abs-1806-09055} представлен алгоритм DARTS, использующий идею релаксации дискретного пространства поиска в непрерывное с помощью операции softmax:
+		
+		$$o^{(i, j)}(x) = \sum_{\mathcal{o}\in\mathcal{O}}\frac{exp(\alpha_{o}^{i, j})}{\sum_{\mathcal{o\prime}\in\mathcal{O}}{exp(\alpha_{o\prime}^{i, j})}}\cdot o(x)$$
+		
+		Задачей NAS в таком случае становится выучивание параметров $\alpha^{i, j}$. В конце, для получения итоговой архитектуры, на каждом ребре архитектуры выбирается операция, удовлетворяющая условию 
+		$$o^{(i, j)}\arg \max_{\mathcal{o}\in\mathcal{O}} \alpha_{\mathcal{o}}^{(i, j)}.$$
+	\end{frame}
+	
+	\section{Постановка задачи}
+	
+	\begin{frame}{Проблемы}
+		\begin{itemize}
+			\item Пространство поиска является дискретным набором заранее заданных операций (пулинги, свертки заданных размеров и т.п.). Процедура поиска оптимальной структуры сети на дискретном пространстве является очень долгой и затратной по вычислительным ресурсам \cite{DBLP:journals/corr/ZophVSL17}. 
+			\item Существующие подходы выведены в условии независимости распределений структуры и параметров модели, что в общем случае неверно.
+			\item Градиентные подходы NAS страдают от застревания в локальных минимумах, из-за чего моделью предпочитается неоптимальная операция в рассматриваемом ребре.
+		\end{itemize}
+		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Постановка задачи}
+		\begin{itemize}
+			\item Задан набор данных $\mathfrak{D} = \{(\mathbf{x}_i, y_i)\}_{i=1}^{N}$\, где каждому входу $\mathbf{x}_i\in \mathbf{X}$ соответствует целевая переменная $y_i\in \mathbf{Y}$. Элементы $(\mathbf{x}_i, y_i)$ являются случайными величинами, взятыми из совместного распределения $\mathbf{p}(\mathbf{x}, y)$. Назовём через $\Gamma$ - суперграф архитектуры, $\mathcal{A}\subset \Gamma$ - архитектура,  $\mathbf{w_{\mathcal{A}}} \sim p(\mathbf{w_{\mathcal{A}}})$ - её структурные параметры. Через $\mathbf{w} \sim p(\mathbf{w})$ обозначим параметры модели.
+			\item Вероятностная модель задается следующим образом
+			$$p(\mathbf{w}, \mathbf{w_{\mathcal{A}}}|\mathbf{X}, \mathbf{y}, \theta) = p(\mathbf{w}|\mathbf{w_{\mathcal{A}}}, \mathbf{X}, \mathbf{y}, \theta)\cdot p(\mathbf{w_{\mathcal{A}}}|\mathbf{X}, \mathbf{y}, \theta).$$
+			\item В качестве оптимальных параметров $\mathbf{w}^{*}, \mathbf{w^{*}_{\mathcal{A}}}$ предлагается использовать те, которые максимизируют их совместное условное распределение.
+			\item Таким образом ставится следующая оптимизационная задача:
+			$$\mathbf{w}^{*}, \mathbf{w^{*}_{\mathcal{A}}} = \arg max p(\mathbf{w}, \mathbf{w_{\mathcal{A}}}|\mathbf{X}, \mathbf{y}, \theta^{*}),$$
+			$$p(\theta|\mathbf{X}, \mathbf{y})\propto p(\mathbf{y}|\mathbf{X}, \theta)\cdot p(\theta).$$
+		\end{itemize}
+		
+	\end{frame}
+	
+	\section{Метод решения}
+	
+	\begin{frame}
+		\frametitle{Вариационный вывод распределений структур и параметров модели.}
+		Основной целью является вывод апостериорного распределения параметров модели при помощи теоремы Байеса. Главной проблемой является интеграл в знаменателе теоремы, который крайне сложно адекватно вычислить в силу высокой размерности пространства параметров модели. В связи с этим предлагается оценить его с помощью вариационного вывода.
+		
+		\medskip
+		
+		Правдоподобие модели:
+		$$\log P(\mathfrak{D}|\mathcal{A}) = \int_{\mathbf{w}\in\mathcal{W}}p(\mathfrak{D}|\mathbf{w})p(\mathbf{w}|\mathcal{A})d\mathbf{w}$$
+	\end{frame}
+	
+	\section{Метод решения}
+	
+	\begin{frame}
+		Вариационная оценка:
+		
+		$$\log P(\mathfrak{D}|\mathcal{A}) = \int_{\mathbf{w}\in\mathcal{W}}q(\mathbf{w})\frac{p(\mathfrak{D}, \mathbf{w}|\mathcal{A})}{q(\mathbf{w})}d\mathbf{w} - \int_{\mathbf{w}\in\mathcal{W}}q(\mathbf{w})\frac{p(\mathbf{w}|\mathfrak{D}, 
+			\mathcal{A})}{q(\mathbf{w})}d\mathbf{w} \approx$$ 
+		
+		$$\int_{\mathbf{w}\in\mathcal{W}}q(\mathbf{w})\frac{p(\mathfrak{D}, \mathbf{w}|\mathcal{A})}{q(\mathbf{w})}d\mathbf{w} = $$
+		
+		$$\int_{\mathbf{w}\in\mathcal{W}}q(\mathbf{w})\frac{\log p(\mathbf{w}|\mathcal{A})}{q(\mathbf{w})}d\mathbf{w} + \int_{\mathbf{w}\in\mathcal{W}}q(\mathbf{w})\log p(\mathfrak{D}|\mathcal{A}, \mathbf{w})d\mathbf{w}=$$
+		
+		$$\mathcal{L}_{\mathbf{w}}(\mathfrak{D}, \mathcal{A}, \mathbf{w}) + \mathcal{L}_{E}(\mathfrak{D}, \mathcal{A}).$$
+		
+		Первое слагаемое - дивергенция Кульбака-Лейблера, второе - матожидание правдоподобия выборки. Минимизируется выведенная величина
+	\end{frame}
+	
+	\section{Детали реализации}
+	
+	\begin{frame}{Текущее состояние}
+		\begin{itemize}
+			\item На текущий момент продолжается вывод теоретических результатов.
+			\item Ставятся первые эксперименты на наборе данных CIFAR-10.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Технические детали проводящихся экспериментов}
+		\begin{itemize}
+			\item Реализация программной части проходит на языке Python с помощью библиотеки для поиска нейросетевых архитектур nni.retiarii, pytorch.
+			\item Для проведения экспериментов и формирования оптимальной структуры (назовем ее ячейкой) используется набор данных CIFAR-10. В дальнейшем предполагается попробовать обучить архитектуру, являющейся композицией нескольких таких ячеек, на наборе данных ImageNet и сравнить полученные метрики качества с существующими SOTA моделями.
+			\item Попробовать в качестве априорного распределения параметров модели распределение Дирихле.
+			
+		\end{itemize}
+	\end{frame}
+	
+	\section{Эксперименты}
+	
+	\begin{frame}
+		\frametitle{Эксперименты}
+		
+		to be continued...
+		
+	\end{frame}
+	
+	
+	\section{Дальнейшая работа}
+	\begin{frame}
+		\frametitle{Дальнейшая работа}
+		\begin{itemize}
+			\item Провести вычислительные эксперименты, используя текущие подходы к аппроксимации распределений. Сравнить полученные показатели качества, а также сравнить робастность генерируемых моделей относительно adversarial атак. Провести сравнительный анализ с существующими подходами NAS.
+			\item Уточнить теоретический вывод апостериорных вероятностных распределений для весов и структуры моделей.
+		\end{itemize}
+		
+	\end{frame}
+	
+\end{document} 

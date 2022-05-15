@@ -1,0 +1,5 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Введение}{4}{}%
+\contentsline {section}{\numberline {2}Обзорно-постановочный раздел работы}{4}{}%
+\contentsline {subsection}{\numberline {2.1}Основные понятия и определения}{4}{}%
+\contentsline {subsection}{\numberline {2.2}Обзор современного состояния проблемы}{4}{}%
