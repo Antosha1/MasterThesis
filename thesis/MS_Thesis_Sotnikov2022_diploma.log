@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.5.15)  15 MAY 2022 23:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.5.15)  23 MAY 2022 18:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -25,7 +25,7 @@ File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
-) (mtaithesis.sty
+) (Diplo.sty
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.
 sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
@@ -460,8 +460,8 @@ Package: floatflt 1997/07/16 v. 1.31
 \outputpretest=\toks31
 )
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/caption\captio
-n.sty
-Package: caption 2022/03/01 v3.6b Customizing captions (AR)
+n2.sty
+Package: caption2 2021/01/20 v2.2i Customising captions (AR)
 
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/caption\captio
 n3.sty
@@ -476,10 +476,13 @@ Package: caption3 2022/03/17 v2.3b caption3 kernel (AR)
 \caption@hangindent=\dimen168
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count286
-\c@continuedfloat=\count287
-Package caption Info: float package is loaded.
-Package caption Info: floatflt package is loaded.
+Package caption2 Info: Running in caption2 v2.0 compatibility mode on input lin
+e 231.
+\captionlinewidth=\dimen169
+\realcaptionwidth=\dimen170
+Package caption2 Info: float package is loaded on input line 335.
+Package caption2 Info: longtable package is not loaded on input line 352.
+Package caption2 Info: subfigure package is not loaded on input line 445.
 )
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/graphics\color
 .sty
@@ -505,45 +508,45 @@ ms.tex)
  Xy-pic is free software: see the User's Guide for details.
 
 Loading kernel: messages; fonts; allocations: state,
-\X@c=\dimen169
-\Y@c=\dimen170
-\U@c=\dimen171
-\D@c=\dimen172
-\L@c=\dimen173
-\R@c=\dimen174
+\X@c=\dimen171
+\Y@c=\dimen172
+\U@c=\dimen173
+\D@c=\dimen174
+\L@c=\dimen175
+\R@c=\dimen176
 \Edge@c=\toks32
-\X@p=\dimen175
-\Y@p=\dimen176
-\U@p=\dimen177
-\D@p=\dimen178
-\L@p=\dimen179
-\R@p=\dimen180
+\X@p=\dimen177
+\Y@p=\dimen178
+\U@p=\dimen179
+\D@p=\dimen180
+\L@p=\dimen181
+\R@p=\dimen182
 \Edge@p=\toks33
-\X@origin=\dimen181
-\Y@origin=\dimen182
-\X@xbase=\dimen183
-\Y@xbase=\dimen184
-\X@ybase=\dimen185
-\Y@ybase=\dimen186
-\X@min=\dimen187
-\Y@min=\dimen188
-\X@max=\dimen189
-\Y@max=\dimen190
+\X@origin=\dimen183
+\Y@origin=\dimen184
+\X@xbase=\dimen185
+\Y@xbase=\dimen186
+\X@ybase=\dimen187
+\Y@ybase=\dimen188
+\X@min=\dimen189
+\Y@min=\dimen190
+\X@max=\dimen191
+\Y@max=\dimen192
 \lastobjectbox@=\box59
 \zerodotbox@=\box60
-\almostz@=\dimen191
+\almostz@=\dimen193
  direction,
-\d@X=\dimen192
-\d@Y=\dimen193
-\K@=\count288
-\KK@=\count289
-\Direction=\count290
-\K@dXdY=\dimen194
-\K@dYdX=\dimen195
+\d@X=\dimen194
+\d@Y=\dimen195
+\K@=\count286
+\KK@=\count287
+\Direction=\count288
+\K@dXdY=\dimen196
+\K@dYdX=\dimen197
 \xyread@=\read3
 \xywrite@=\write3
-\csp@=\count291
-\quotPTK@=\dimen196
+\csp@=\count289
+\quotPTK@=\dimen198
 
 utility macros; pictures: \xy, positions,
 \swaptoks@@=\toks34
@@ -567,15 +570,15 @@ Package: xy 2013/10/06 Xy-pic version 3.8.9
 tex  Xy-pic option: All features v.3.8
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/generic/xypic\xycurv
 e.tex  Xy-pic option: Curve and Spline extension v.3.12 curve,
-\crv@cnt@=\count292
+\crv@cnt@=\count290
 \crvpts@=\toks36
 \splinebox@=\box62
-\splineval@=\dimen197
-\splinedepth@=\dimen198
-\splinetol@=\dimen199
-\splinelength@=\dimen256
+\splineval@=\dimen199
+\splinedepth@=\dimen256
+\splinetol@=\dimen257
+\splinelength@=\dimen258
  circles,
-\L@=\dimen257
+\L@=\dimen259
  loaded)
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/generic/xypic\xyfram
 e.tex  Xy-pic option: Frame and Bracket extension v.3.14 loaded)
@@ -585,7 +588,7 @@ p.tex  Xy-pic option: Computer Modern tip extension v.3.7
 .tex  Xy-pic option: More Tips extension v.3.11 loaded) loaded)
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/generic/xypic\xyline
 .tex  Xy-pic option: Line styles extension v.3.10
-\xylinethick@=\dimen258
+\xylinethick@=\dimen260
  loaded)
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/generic/xypic\xyrota
 te.tex  Xy-pic option: Rotate and Scale extension v.3.8 loaded)
@@ -593,13 +596,13 @@ te.tex  Xy-pic option: Rotate and Scale extension v.3.8 loaded)
 r.tex  Xy-pic option: Colour extension v.3.11 loaded)
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/generic/xypic\xymatr
 ix.tex  Xy-pic option: Matrix feature v.3.14
-\Row=\count293
-\Col=\count294
+\Row=\count291
+\Col=\count292
 \queue@=\toks37
 \queue@@=\toks38
-\qcount@=\count295
-\qcount@@=\count296
-\matrixsize@=\count297
+\qcount@=\count293
+\qcount@@=\count294
+\matrixsize@=\count295
  loaded)
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/generic/xypic\xyarro
 w.tex  Xy-pic option: Arrow and Path feature v.3.9 path, \ar, loaded)
@@ -618,367 +621,32 @@ fr.tex loaded) Xy-pic pdf driver: `line' extension support
 li.tex loaded) Xy-pic pdf driver: `rotate' extension support
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/generic/xypic\xypdf-
 ro.tex loaded) loaded))
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\bibla
-tex.sty
-Package: biblatex 2022/02/02 v3.17 programmable bibliographies (PK/MW)
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\p
-dftexcmds.sty
-Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/cmap\cmap.sty
+Package: cmap 2021/02/06 v1.0j CMap support: searchable PDF
+)<<ot1.cmap>>
+\c@Theorem=\count296
+\c@Corollary=\count297
+\c@Lemma=\count298
+\c@Def=\count299
+\c@State=\count300
+\c@Hypothesis=\count301
+\c@Example=\count302
+\c@Heuristic=\count303
+\c@Remark=\count304
 )
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\in
-fwarerr.sty
-Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-)
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxc
-mds.sty
-Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
-)
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etool
-box.sty
-Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count298
-)
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvop
-tions.sty
-Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/generic/kvsetkeys\kv
-setkeys.sty
-Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
-))
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/logreq\logreq.
-sty
-Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count299
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/logreq\logreq.
-def
-File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
-))
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
-\Urlmuskip=\muskip17
-Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-)
-\c@tabx@nest=\count300
-\c@listtotal=\count301
-\c@listcount=\count302
-\c@liststart=\count303
-\c@liststop=\count304
-\c@citecount=\count305
-\c@citetotal=\count306
-\c@multicitecount=\count307
-\c@multicitetotal=\count308
-\c@instcount=\count309
-\c@maxnames=\count310
-\c@minnames=\count311
-\c@maxitems=\count312
-\c@minitems=\count313
-\c@citecounter=\count314
-\c@maxcitecounter=\count315
-\c@savedcitecounter=\count316
-\c@uniquelist=\count317
-\c@uniquename=\count318
-\c@refsection=\count319
-\c@refsegment=\count320
-\c@maxextratitle=\count321
-\c@maxextratitleyear=\count322
-\c@maxextraname=\count323
-\c@maxextradate=\count324
-\c@maxextraalpha=\count325
-\c@abbrvpenalty=\count326
-\c@highnamepenalty=\count327
-\c@lownamepenalty=\count328
-\c@maxparens=\count329
-\c@parenlevel=\count330
-\blx@tempcnta=\count331
-\blx@tempcntb=\count332
-\blx@tempcntc=\count333
-\c@blx@maxsection=\count334
-\c@blx@maxsegment@0=\count335
-\blx@notetype=\count336
-\blx@parenlevel@text=\count337
-\blx@parenlevel@foot=\count338
-\c@blx@sectionciteorder@0=\count339
-\blx@entrysetcounter=\count340
-\blx@biblioinstance=\count341
-\labelnumberwidth=\skip58
-\labelalphawidth=\skip59
-\biblabelsep=\skip60
-\bibitemsep=\skip61
-\bibnamesep=\skip62
-\bibinitsep=\skip63
-\bibparsep=\skip64
-\bibhang=\skip65
-\blx@bcfin=\read4
-\blx@bcfout=\write4
-\blx@langwohyphens=\language80
-\c@mincomprange=\count342
-\c@maxcomprange=\count343
-\c@mincompwidth=\count344
-Package biblatex Info: Trying to load biblatex default data model...
-Package biblatex Info: ... file 'blx-dm.def' found.
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-d
-m.def
-File: blx-dm.def 2022/02/02 v3.17 biblatex localization (PK/MW)
-)
-Package biblatex Info: Trying to load biblatex bibstyle data model...
-Package biblatex Info: ... file 'gost-numeric.dbx' found.
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/biblatex-gost/
-dbx\gost-numeric.dbx
-File: gost-numeric.dbx 2021/05/08 v1.22 biblatex-gost data model
-Package biblatex Info: Trying to load biblatex-gost data model...
-Package biblatex Info: ... file 'biblatex-gost.dbx' found.
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/biblatex-gost/
-dbx\biblatex-gost.dbx
-File: biblatex-gost.dbx 2021/05/08 v1.22 biblatex-gost data model
-))
-Package biblatex Info: Trying to load biblatex custom data model...
-Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count345
-\c@savedafterword=\count346
-\c@annotator=\count347
-\c@savedannotator=\count348
-\c@author=\count349
-\c@savedauthor=\count350
-\c@bookauthor=\count351
-\c@savedbookauthor=\count352
-\c@commentator=\count353
-\c@savedcommentator=\count354
-\c@editor=\count355
-\c@savededitor=\count356
-\c@editora=\count357
-\c@savededitora=\count358
-\c@editorb=\count359
-\c@savededitorb=\count360
-\c@editorc=\count361
-\c@savededitorc=\count362
-\c@foreword=\count363
-\c@savedforeword=\count364
-\c@holder=\count365
-\c@savedholder=\count366
-\c@introduction=\count367
-\c@savedintroduction=\count368
-\c@namea=\count369
-\c@savednamea=\count370
-\c@nameb=\count371
-\c@savednameb=\count372
-\c@namec=\count373
-\c@savednamec=\count374
-\c@translator=\count375
-\c@savedtranslator=\count376
-\c@shortauthor=\count377
-\c@savedshortauthor=\count378
-\c@shorteditor=\count379
-\c@savedshorteditor=\count380
-\c@booktranslator=\count381
-\c@savedbooktranslator=\count382
-\c@bookcommentator=\count383
-\c@savedbookcommentator=\count384
-\c@bookannotator=\count385
-\c@savedbookannotator=\count386
-\c@bookintroduction=\count387
-\c@savedbookintroduction=\count388
-\c@bookforeword=\count389
-\c@savedbookforeword=\count390
-\c@bookafterword=\count391
-\c@savedbookafterword=\count392
-\c@labelname=\count393
-\c@savedlabelname=\count394
-\c@institution=\count395
-\c@savedinstitution=\count396
-\c@lista=\count397
-\c@savedlista=\count398
-\c@listb=\count399
-\c@savedlistb=\count400
-\c@listc=\count401
-\c@savedlistc=\count402
-\c@listd=\count403
-\c@savedlistd=\count404
-\c@liste=\count405
-\c@savedliste=\count406
-\c@listf=\count407
-\c@savedlistf=\count408
-\c@location=\count409
-\c@savedlocation=\count410
-\c@organization=\count411
-\c@savedorganization=\count412
-\c@origlocation=\count413
-\c@savedoriglocation=\count414
-\c@origpublisher=\count415
-\c@savedorigpublisher=\count416
-\c@publisher=\count417
-\c@savedpublisher=\count418
-\c@language=\count419
-\c@savedlanguage=\count420
-\c@origlanguage=\count421
-\c@savedoriglanguage=\count422
-\c@bookoriglanguage=\count423
-\c@savedbookoriglanguage=\count424
-\c@specdata=\count425
-\c@savedspecdata=\count426
-\c@credits=\count427
-\c@savedcredits=\count428
-\c@bookcredits=\count429
-\c@savedbookcredits=\count430
-\c@editioncredits=\count431
-\c@savededitioncredits=\count432
-\c@pageref=\count433
-\c@savedpageref=\count434
-\shorthandwidth=\skip66
-\shortjournalwidth=\skip67
-\shortserieswidth=\skip68
-\shorttitlewidth=\skip69
-\shortauthorwidth=\skip70
-\shorteditorwidth=\skip71
-\locallabelnumberwidth=\skip72
-\locallabelalphawidth=\skip73
-\localshorthandwidth=\skip74
-\localshortjournalwidth=\skip75
-\localshortserieswidth=\skip76
-\localshorttitlewidth=\skip77
-\localshortauthorwidth=\skip78
-\localshorteditorwidth=\skip79
-Package biblatex Info: Trying to load compatibility code...
-Package biblatex Info: ... file 'blx-compat.def' found.
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-c
-ompat.def
-File: blx-compat.def 2022/02/02 v3.17 biblatex compatibility (PK/MW)
-)
-Package biblatex Info: Trying to load generic definitions...
-Package biblatex Info: ... file 'biblatex.def' found.
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\bibla
-tex.def
-File: biblatex.def 2022/02/02 v3.17 biblatex compatibility (PK/MW)
-\c@textcitecount=\count435
-\c@textcitetotal=\count436
-\c@textcitemaxnames=\count437
-\c@biburlbigbreakpenalty=\count438
-\c@biburlbreakpenalty=\count439
-\c@biburlnumpenalty=\count440
-\c@biburlucpenalty=\count441
-\c@biburllcpenalty=\count442
-\biburlbigskip=\muskip18
-\biburlnumskip=\muskip19
-\biburlucskip=\muskip20
-\biburllcskip=\muskip21
-\c@smartand=\count443
-)
-Package biblatex Info: Trying to load bibliography style 'gost-numeric'...
-Package biblatex Info: ... file 'gost-numeric.bbx' found.
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/biblatex-gost/
-bbx\gost-numeric.bbx
-File: gost-numeric.bbx 2021/05/08 v1.22 biblatex-gost styles
-Package biblatex Info: Trying to load bibliography style 'gost-standard'...
-Package biblatex Info: ... file 'gost-standard.bbx' found.
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/biblatex-gost/
-bbx\gost-standard.bbx
-File: gost-standard.bbx 2021/05/08 v1.22 biblatex-gost styles
-Package biblatex Info: Trying to load biblatex-gost generic definitions...
-Package biblatex Info: ... file 'biblatex-gost.def' found.
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/biblatex-gost\
-biblatex-gost.def
-File: biblatex-gost.def 2021/05/08 v1.22 biblatex-gost styles
-)
-\c@blx@gost@pointer=\count444
-\c@bbx:relatedcount=\count445
-\c@bbx:relatedtotal=\count446
-Package biblatex Info: Redefining autocite command 'footnote'.
-Package biblatex Info: Redefining autocite command 'superscript'.
-))
-Package biblatex Info: Trying to load citation style 'numeric'...
-Package biblatex Info: ... file 'numeric.cbx' found.
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/cbx\n
-umeric.cbx
-File: numeric.cbx 2022/02/02 v3.17 biblatex citation style (PK/MW)
-Package biblatex Info: Redefining '\cite'.
-Package biblatex Info: Redefining '\parencite'.
-Package biblatex Info: Redefining '\footcite'.
-Package biblatex Info: Redefining '\footcitetext'.
-Package biblatex Info: Redefining '\smartcite'.
-Package biblatex Info: Redefining '\supercite'.
-Package biblatex Info: Redefining '\textcite'.
-Package biblatex Info: Redefining '\textcites'.
-Package biblatex Info: Redefining '\cites'.
-Package biblatex Info: Redefining '\parencites'.
-Package biblatex Info: Redefining '\smartcites'.
-)
-Package biblatex Info: Trying to load configuration file...
-Package biblatex Info: ... file 'biblatex.cfg' found.
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\bibla
-tex.cfg
-File: biblatex.cfg 
-)
-Package biblatex Info: Input encoding 'utf8' detected.
-Package biblatex Info: Document encoding is UTF8 ....
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3
-.sty
-Package: expl3 2022-02-24 L3 programming layer (loader) 
-
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3ba
 ckend-pdftex.def
 File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count447
+\l__color_backend_stack_int=\count305
 \l__pdf_internal_box=\box63
-))
-Package biblatex Info: ... and expl3
-(biblatex)             2022-02-24 L3 programming layer (loader) 
-(biblatex)             is new enough (at least 2020/04/06),
-(biblatex)             setting 'casechanger=expl3'.
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-c
-ase-expl3.sty
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xpa
-rse\xparse.sty
-Package: xparse 2022-01-12 L3 Experimental document command parser
-)
-Package: blx-case-expl3 2022/02/02 v3.17 expl3 case changing code for biblatex
-))
-
-Package biblatex-gost Warning: You set maxbibnames or maxcitenames
-(biblatex-gost)                different from their default value 3.
-(biblatex-gost)                Make sure that sorting works as expected.
-
-\c@Theorem=\count448
-\c@Corollary=\count449
-\c@Lemma=\count450
-\c@Def=\count451
-\c@State=\count452
-\c@Hypothesis=\count453
-\c@Example=\count454
-\c@Heuristic=\count455
-\c@Remark=\count456
-)
-
-Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
-(biblatex)                Loading 'csquotes' recommended.
-
-\@quotelevel=\count457
-\@quotereset=\count458
-(MS_Thesis_Sotnikov2022_diploma.aux
-LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 6
+) (MS_Thesis_Sotnikov2022_diploma.aux
+LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 5
 .
 
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2acm
 r.fd
 File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-))
+)<<t2a.cmap>>)
 \openout1 = `MS_Thesis_Sotnikov2022_diploma.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
@@ -1002,16 +670,16 @@ LaTeX Info: Redefining \th on input line 6.
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\su
 pp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count459
-\scratchdimen=\dimen259
+\scratchcounter=\count306
+\scratchdimen=\dimen261
 \scratchbox=\box64
-\nofMPsegments=\count460
-\nofMParguments=\count461
+\nofMPsegments=\count307
+\nofMParguments=\count308
 \everyMPshowfont=\toks39
-\MPscratchCnt=\count462
-\MPscratchDim=\dimen260
-\MPnumerator=\count463
-\makeMPintoPDFobject=\count464
+\MPscratchCnt=\count309
+\MPscratchDim=\dimen262
+\MPnumerator=\count310
+\makeMPintoPDFobject=\count311
 \everyMPtoPDFconversion=\toks40
 )
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\e
@@ -1026,6 +694,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
+<<oml.cmap>><<oms.cmap>><<omx.cmap>>
 LaTeX Font Info:    Trying to load font information for U+msa on input line 6.
 
 (C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.
@@ -1039,39 +708,7 @@ fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 Package xypdf Info: Line width: 0.47998pt on input line 6.
-Package biblatex Info: Trying to load language 'russian' -> 'russian-gost'...
-Package biblatex Info: ... file 'russian-gost.lbx' found.
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/biblatex-gost/
-lbx\russian-gost.lbx
-File: russian-gost.lbx 2021/05/08 v1.22 biblatex-gost styles
-Package biblatex Info: Trying to load language 'russian'...
-Package biblatex Info: ... file 'russian.lbx' found.
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/lbx\r
-ussian.lbx
-File: russian.lbx 2022/02/02 v3.17 biblatex localization (PK/MW)
-)
-Package biblatex Info: Trying to load language 'russian'...
-Package biblatex Info: ... file 'russian.lbx' found.
-
-(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/lbx\r
-ussian.lbx
-File: russian.lbx 2022/02/02 v3.17 biblatex localization (PK/MW)
-))
-Package biblatex Info: Input encoding 'utf8' detected.
-Package biblatex Info: Automatic encoding selection.
-(biblatex)             Assuming data encoding 'utf8'.
-\openout4 = `MS_Thesis_Sotnikov2022_diploma.bcf'.
-
-Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'MS_Thesis_Sotnikov2022_diploma.bbl' not found.
-
-
-No file MS_Thesis_Sotnikov2022_diploma.bbl.
-Package biblatex Info: Reference section=0 on input line 6.
-Package biblatex Info: Reference segment=0 on input line 6.
-[1
+ [1
 
 {C:/Users/anton.sotnikov/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 LaTeX Font Info:    Trying to load font information for T2A+cmss on input line 
@@ -1081,49 +718,141 @@ LaTeX Font Info:    Trying to load font information for T2A+cmss on input line
 ss.fd
 File: t2acmss.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 ) (MS_Thesis_Sotnikov2022_diploma.toc)
-\tf@toc=\write5
-\openout5 = `MS_Thesis_Sotnikov2022_diploma.toc'.
+\tf@toc=\write4
+\openout4 = `MS_Thesis_Sotnikov2022_diploma.toc'.
 
- [2] [3] [4]
+ [2] [3] [4] [5]
+LaTeX Font Info:    Trying to load font information for U+euf on input line 116
+.
 
-LaTeX Warning: Empty bibliography on input line 73.
+(C:\Users\anton.sotnikov\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\ueuf.
+fd
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+) [6]
 
-(MS_Thesis_Sotnikov2022_diploma.aux)
+LaTeX Warning: Citation `NIPS2011_7eb3c8be' on page 7 undefined on input line 1
+34.
+
+
+LaTeX Warning: Citation `DBLP:journals/corr/abs-1802-03268' on page 7 undefined
+ on input line 136.
+
+
+LaTeX Warning: Citation `DBLP:journals/corr/ZophL16' on page 7 undefined on inp
+ut line 136.
+
+
+LaTeX Warning: Citation `article' on page 7 undefined on input line 136.
+
+
+LaTeX Warning: Citation `real2019regularized' on page 7 undefined on input line
+ 136.
+
+
+LaTeX Warning: Citation `DBLP:journals/corr/abs-1806-09055' on page 7 undefined
+ on input line 136.
+
+
+LaTeX Warning: Citation `DBLP:journals/corr/abs-2007-16149' on page 7 undefined
+ on input line 136.
+
+
+LaTeX Warning: Citation `inproceedings' on page 7 undefined on input line 136.
+
+
+LaTeX Warning: Citation `DBLP:journals/corr/abs-2011-06006' on page 7 undefined
+ on input line 136.
+
+
+LaTeX Warning: Citation `ferianc2021vinnas' on page 7 undefined on input line 1
+36.
+
+
+LaTeX Warning: Citation `zhou2019bayesnas' on page 7 undefined on input line 13
+6.
+
+
+LaTeX Warning: Citation `cifar10' on page 7 undefined on input line 138.
+
+
+LaTeX Warning: Citation `DBLP:journals/corr/abs-1708-07747' on page 7 undefined
+ on input line 138.
+
+[7] [8] [9] [10] (MS_Thesis_Sotnikov2022_diploma.bbl
+Underfull \hbox (badness 3312) in paragraph at lines 12--16
+[]\T2A/cmr/m/n/12 Bayesnas: A bayesian approach for neural architecture search 
+/ H. Zhou,
+ []
+
+
+Underfull \hbox (badness 3713) in paragraph at lines 12--16
+\T2A/cmr/m/n/12 M. Yang, J. Wang, W. Pan // \T2A/cmr/m/it/12 CoRR\T2A/cmr/m/n/1
+2 . ^^V  2019. ^^V  Vol. abs/1905.04919.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--30
+[]\T2A/cmr/m/it/12 Ferianc M., Fan H., Rodrigues M. \T2A/cmr/m/n/12 VINNAS: var
+iational inference-based
+ []
+
+
+Underfull \hbox (badness 1442) in paragraph at lines 33--37
+[]\T2A/cmr/m/n/12 Learning transferable architectures for scalable image recogn
+ition / B. Zoph,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--50
+[]\T2A/cmr/m/it/12 Potapczynski A., Loaiza-Ganem G., Cunningham J. P. \T2A/cmr/
+m/n/12 Invertible
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--50
+\T2A/cmr/m/n/12 gaussian reparameterization: Revisiting the gumbel-softmax. ^^V
+  2019.
+ []
+
+) [11] (MS_Thesis_Sotnikov2022_diploma.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                MS_Thesis_Sotnikov2022_diploma
-(biblatex)                and rerun LaTeX afterwards.
-
-Package logreq Info: Writing requests to 'MS_Thesis_Sotnikov2022_diploma.run.xm
-l'.
-\openout1 = `MS_Thesis_Sotnikov2022_diploma.run.xml'.
-
  ) 
 Here is how much of TeX's memory you used:
- 17453 strings out of 478582
- 310276 string characters out of 2840096
- 1243579 words of memory out of 3000000
- 35382 multiletter control sequences out of 15000+600000
- 486267 words of font info for 69 fonts, out of 8000000 for 9000
+ 8752 strings out of 478582
+ 132693 string characters out of 2840096
+ 470168 words of memory out of 3000000
+ 26719 multiletter control sequences out of 15000+600000
+ 489110 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,5n,82p,3244b,3091s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 70i,5n,77p,3261b,203s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\anton.sotnikov\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi6
-00\lasx1440.pk> <C:\Users\anton.sotnikov\AppData\Local\MiKTeX\fonts/pk/ljfour/l
-h/lh-t2a/dpi600\larm1095.pk> <C:\Users\anton.sotnikov\AppData\Local\MiKTeX\font
-s/pk/ljfour/lh/lh-t2a/dpi600\labx1095.pk> <C:\Users\anton.sotnikov\AppData\Loca
-l\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\lasx1728.pk> <C:\Users\anton.sotnikov
-\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\a
-nton.sotnikov\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1728.pk
-> <C:\Users\anton.sotnikov\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi60
-0\larm1440.pk> <C:\Users\anton.sotnikov\AppData\Local\MiKTeX\fonts/pk/ljfour/lh
-/lh-t2a/dpi600\larm1200.pk> <C:\Users\anton.sotnikov\AppData\Local\MiKTeX\fonts
-/pk/ljfour/lh/lh-t2a/dpi600\lacc1200.pk>
-Output written on MS_Thesis_Sotnikov2022_diploma.pdf (4 pages, 85207 bytes).
+00\lati1200.pk> <C:\Users\anton.sotnikov\AppData\Local\MiKTeX\fonts/pk/ljfour/l
+h/lh-t2a/dpi600\lasx1440.pk> <C:\Users\anton.sotnikov\AppData\Local\MiKTeX\font
+s/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\anton.sotnikov\AppData\Lo
+cal\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1095.pk> <C:\Users\anton.sotnik
+ov\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1095.pk> <C:\Users
+\anton.sotnikov\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\lasx1728.
+pk> <C:\Users\anton.sotnikov\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi
+600\labx1200.pk> <C:\Users\anton.sotnikov\AppData\Local\MiKTeX\fonts/pk/ljfour/
+lh/lh-t2a/dpi600\labx1728.pk> <C:\Users\anton.sotnikov\AppData\Local\MiKTeX\fon
+ts/pk/ljfour/lh/lh-t2a/dpi600\larm1440.pk> <C:\Users\anton.sotnikov\AppData\Loc
+al\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\anton.sotniko
+v\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\lacc1200.pk><C:/Users/a
+nton.sotnikov/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx
+12.pfb><C:/Users/anton.sotnikov/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmmi12.pfb><C:/Users/anton.sotnikov/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/anton.sotnikov/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/anton.sotn
+ikov/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/
+Users/anton.sotnikov/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb><C:/Users/anton.sotnikov/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmsy8.pfb><C:/Users/anton.sotnikov/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/euler/eufm10.pfb>
+Output written on MS_Thesis_Sotnikov2022_diploma.pdf (11 pages, 239794 bytes).
 PDF statistics:
- 272 PDF objects out of 1000 (max. 8388607)
+ 538 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

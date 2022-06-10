@@ -83,7 +83,7 @@
       <file>MS_Thesis_Sotnikov2022_diploma.bcf</file>
     </requires>
     <requires type="editable">
-      <file>mtaibiblio.bib</file>
+      <file>my_bib</file>
     </requires>
   </external>
 </requests>

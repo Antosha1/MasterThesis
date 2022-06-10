@@ -1,0 +1,7 @@
+{'input_size': 1,
+ 'in_channels': 1,
+  'channels': 2,
+  'n_layers': 3,
+  'n_nodes': 4,
+  'stem_multiplier': 3,
+  'auxiliary': False}

@@ -1,0 +1,86 @@
+\begin{thebibliography}{1}
+\def\selectlanguageifdefined#1{
+\expandafter\ifx\csname date#1\endcsname\relax
+\else\selectlanguage{#1}\fi}
+
+\bibitem{NIPS2011_7eb3c8be}
+\selectlanguageifdefined{english}
+\emph{Graves~Alex}.
+Practical variational inference for neural networks~//
+Advances in Neural Information Processing Systems~/
+Eds.\  J.~Shawe-Taylor, R.~Zemel, P.~Bartlett, F.~Pereira, K.~Q.
+  Weinberger.~---
+2011.
+Vol.~24.
+URL:
+  \url{https://proceedings.neurips.cc/paper/2011/file/7eb3c8be3d411e8ebfab08eba5f49632-Paper.pdf}.
+
+\bibitem{DBLP:journals/corr/abs-1806-09055}
+\selectlanguageifdefined{english}
+\emph{Liu~Hanxiao, Simonyan~Karen, Yang~Yiming}.
+{DARTS:} differentiable architecture search~//
+CoRR,
+2018.
+Vol. abs/1806.09055.
+URL: \url{http://arxiv.org/abs/1806.09055}.
+
+\bibitem{zhou2019bayesnas}
+\selectlanguageifdefined{english}
+\emph{Zhou~Hongpeng, Yang~Minghao, Wang~Jun, Pan~Wei}.
+Bayesnas: A bayesian approach for neural architecture search.~---
+2019.
+
+\bibitem{DBLP:journals/corr/abs-1910-11858}
+\selectlanguageifdefined{english}
+\emph{White~Colin, Neiswanger~Willie, Savani~Yash}.
+{BANANAS:} bayesian optimization with neural architectures for neural
+  architecture search~//
+CoRR,
+2019.
+Vol. abs/1910.11858.
+URL: \url{http://arxiv.org/abs/1910.11858}.
+
+\bibitem{inproceedings}
+\selectlanguageifdefined{english}
+\emph{Li~Zhihang, Xi~Teng, Deng~Jiankang, Zhang~Gang, Wen~Shengzhao, He~Ran}.
+Gp-nas: Gaussian process based neural architecture search.~---
+2020.
+P.~11930--11939.
+
+\bibitem{DBLP:journals/corr/abs-2011-06006}
+\selectlanguageifdefined{english}
+\emph{Park~Daniel~S., Lee~Jaehoon, Peng~Daiyi, Cao~Yuan,
+  Sohl{-}Dickstein~Jascha}.
+Towards nngp-guided neural architecture search~//
+CoRR,
+2020.
+Vol. abs/2011.06006.
+URL: \url{https://arxiv.org/abs/2011.06006}.
+
+\bibitem{DBLP:journals/corr/abs-2007-16149}
+\selectlanguageifdefined{english}
+\emph{Lopes~Vasco, Alexandre~Lu{\'{\i}}s~A.}
+{HMCNAS:} neural architecture search using hidden markov chains and bayesian
+  optimization~//
+CoRR,
+2020.
+Vol. abs/2007.16149.
+URL: \url{https://arxiv.org/abs/2007.16149}.
+
+\bibitem{DBLP:journals/corr/abs-2006-10355}
+\selectlanguageifdefined{english}
+\emph{Chen~Xiangning, Wang~Ruochen, Cheng~Minhao, Tang~Xiaocheng,
+  Hsieh~Cho{-}Jui}.
+Drnas: Dirichlet neural architecture search~//
+CoRR,
+2020.
+Vol. abs/2006.10355.
+URL: \url{https://arxiv.org/abs/2006.10355}.
+
+\bibitem{ferianc2021vinnas}
+\selectlanguageifdefined{english}
+\emph{Ferianc~Martin, Fan~Hongxiang, Rodrigues~Miguel}.
+Vinnas: Variational inference-based neural network architecture search.~---
+2021.
+
+\end{thebibliography}

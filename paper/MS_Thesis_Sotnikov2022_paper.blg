@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: MS_Thesis_Sotnikov2022_paper.aux
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Reallocating 'name_of_file' (item size: 1) to 14 items.
+The style file: jmlda-rus.bst.bst
+Database file #1: biblio.bib
+Warning--empty booktitle in inproceedings
+You've used 9 entries,
+            2717 wiz_defined-function locations,
+            963 strings with 9276 characters,
+and the built_in function-call counts, 3042 in all, are:
+= -- 450
+> -- 144
+< -- 5
++ -- 46
+- -- 37
+* -- 214
+:= -- 365
+add.period$ -- 35
+call.type$ -- 9
+change.case$ -- 9
+chr.to.int$ -- 0
+cite$ -- 10
+duplicate$ -- 134
+empty$ -- 231
+format.name$ -- 38
+if$ -- 804
+int.to.chr$ -- 0
+int.to.str$ -- 9
+missing$ -- 5
+newline$ -- 80
+num.names$ -- 10
+pop$ -- 56
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 77
+stack$ -- 0
+substring$ -- 44
+swap$ -- 109
+text.length$ -- 5
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 12
+width$ -- 10
+write$ -- 92
+(There was 1 warning)

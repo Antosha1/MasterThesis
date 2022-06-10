@@ -1,5 +1,13 @@
 \babel@toc {russian}{}\relax 
 \contentsline {section}{\numberline {1}Введение}{4}{}%
-\contentsline {section}{\numberline {2}Обзорно-постановочный раздел работы}{4}{}%
-\contentsline {subsection}{\numberline {2.1}Основные понятия и определения}{4}{}%
-\contentsline {subsection}{\numberline {2.2}Обзор современного состояния проблемы}{4}{}%
+\contentsline {section}{\numberline {2}Постановка задачи}{6}{}%
+\contentsline {subsection}{\numberline {2.1}Основные понятия и определения}{6}{}%
+\contentsline {subsection}{\numberline {2.2}Формальная постановка задачи}{6}{}%
+\contentsline {section}{\numberline {3}Обзор существующих методов}{7}{}%
+\contentsline {subsection}{\numberline {3.1}Невероятностные методы}{7}{}%
+\contentsline {subsection}{\numberline {3.2}Вероятностные методы}{7}{}%
+\contentsline {section}{\numberline {4}Описание метода}{8}{}%
+\contentsline {subsection}{\numberline {4.1}Вариационная нижняя оценка обоснованности}{8}{}%
+\contentsline {subsection}{\numberline {4.2}Выбор априорных распределений}{8}{}%
+\contentsline {section}{\numberline {5}Вычислительный эксперимент}{9}{}%
+\contentsline {section}{\numberline {6}Заключение}{10}{}%
