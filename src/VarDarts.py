@@ -13,9 +13,9 @@ from nni.retiarii.oneshot.pytorch.utils import AverageMeterGroup, replace_layer_
 _logger = logging.getLogger(__name__)
 
 
-class DartsLayerChoice(nn.Module):
+class VarDartsLayerChoice(nn.Module):
     def __init__(self, layer_choice):
-        super(DartsLayerChoice, self).__init__()
+        super(VarDartsLayerChoice, self).__init__()
         self.name = layer_choice.label
         self.op_choices = nn.ModuleDict(OrderedDict([(name, layer_choice[name]) for name in layer_choice.names]))
         self.alpha = nn.Parameter(torch.randn(len(self.op_choices)) * 1e-3)
@@ -23,25 +23,26 @@ class DartsLayerChoice(nn.Module):
     def forward(self, *args, **kwargs):
         op_results = torch.stack([op(*args, **kwargs) for op in self.op_choices.values()])
         alpha_shape = [-1] + [1] * (len(op_results.size()) - 1)
-        return torch.sum(op_results * F.softmax(self.alpha, -1).view(*alpha_shape), 0)
+        return torch.sum(op_results * F.gumbel_softmax(self.alpha, -1).view(*alpha_shape), 0)
 
     def parameters(self):
         for _, p in self.named_parameters():
             yield p
 
     def named_parameters(self):
-        for name, p in super(DartsLayerChoice, self).named_parameters():
+        for name, p in super(VarDartsLayerChoice, self).named_parameters():
             if name == 'alpha':
                 continue
             yield name, p
 
     def export(self):
-        return list(self.op_choices.keys())[torch.argmax(self.alpha).item()]
+        # Так верно? Или можно без гумбеля аргмакс брать по альфам?
+        return list(self.op_choices.keys())[torch.argmax(F.gumbel_softmax(self.alpha)).item()]
 
 
-class DartsInputChoice(nn.Module):
+class VarDartsInputChoice(nn.Module):
     def __init__(self, input_choice):
-        super(DartsInputChoice, self).__init__()
+        super(VarDartsInputChoice, self).__init__()
         self.name = input_choice.label
         self.alpha = nn.Parameter(torch.randn(input_choice.n_candidates) * 1e-3)
         self.n_chosen = input_choice.n_chosen or 1
@@ -49,25 +50,26 @@ class DartsInputChoice(nn.Module):
     def forward(self, inputs):
         inputs = torch.stack(inputs)
         alpha_shape = [-1] + [1] * (len(inputs.size()) - 1)
-        return torch.sum(inputs * F.softmax(self.alpha, -1).view(*alpha_shape), 0)
+        return torch.sum(inputs * F.gumbel_softmax(self.alpha, -1).view(*alpha_shape), 0)
 
     def parameters(self):
         for _, p in self.named_parameters():
             yield p
 
     def named_parameters(self):
-        for name, p in super(DartsInputChoice, self).named_parameters():
+        for name, p in super(VarDartsInputChoice, self).named_parameters():
             if name == 'alpha':
                 continue
             yield name, p
 
     def export(self):
-        return torch.argsort(-self.alpha).cpu().numpy().tolist()[:self.n_chosen]
+        # Так верно? Или можно без гумбеля аргмакс брать по альфам?
+        return torch.argsort(-F.gumbel_softmax(self.alpha)).cpu().numpy().tolist()[:self.n_chosen]
 
 
 class VarDartsTrainer(BaseOneShotTrainer):
     """
-    DARTS trainer.
+    Variational DARTS trainer.
     Parameters
     ----------
     model : nn.Module
@@ -101,33 +103,41 @@ class VarDartsTrainer(BaseOneShotTrainer):
     """
 
     def __init__(self, model, loss, metrics, optimizer,
-                 num_epochs, dataset, grad_clip=5.,
-                 learning_rate=2.5E-3, batch_size=64, workers=4,
-                 device=None, log_frequency=None,
+                 num_epochs, dataset_train, dataset_val,
+                 grad_clip=5., learning_rate=2.5E-3, batch_size=64,
+                 workers=4, device=None, log_frequency=None,
                  arc_learning_rate=3.0E-4, unrolled=False):
         self.model = model
         self.loss = loss
         self.metrics = metrics
         self.num_epochs = num_epochs
-        self.dataset = dataset
+        self.dataset_train = dataset_train
+        self.dataset_val = dataset_val
         self.batch_size = batch_size
         self.workers = workers
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu') if device is None else device
         self.log_frequency = log_frequency
         self.model.to(self.device)
 
-        self.nas_modules = []
-        replace_layer_choice(self.model, DartsLayerChoice, self.nas_modules)
-        replace_input_choice(self.model, DartsInputChoice, self.nas_modules)
+        self.sigma_w = {}  # хранилище sigma по каждому параметру
+
+        self.nas_modules = []  # хранилище клеток
+        replace_layer_choice(self.model, VarDartsLayerChoice, self.nas_modules)
+        replace_input_choice(self.model, VarDartsInputChoice, self.nas_modules)
+
         for _, module in self.nas_modules:
             module.to(self.device)
+
+        for param in model.parameters():  # собираем сигмы
+            if 'sigma' in param.__dict__:
+                self.sigma_w[param] = param.sigma
 
         self.model_optim = optimizer
         # use the same architecture weight for modules with duplicated names
         ctrl_params = {}
         for _, m in self.nas_modules:
             if m.name in ctrl_params:
-                assert m.alpha.size() == ctrl_params[m.name].size(), 'Size of parameters with the same label should be same.'
+                assert m.alpha.size() == ctrl_params[m.name].size()  # Size of parameters with the same label should be same.
                 m.alpha = ctrl_params[m.name]
             else:
                 ctrl_params[m.name] = m.alpha
@@ -139,18 +149,11 @@ class VarDartsTrainer(BaseOneShotTrainer):
         self._init_dataloader()
 
     def _init_dataloader(self):
-        n_train = len(self.dataset)
-        split = n_train // 2
-        indices = list(range(n_train))
-        train_sampler = torch.utils.data.sampler.SubsetRandomSampler(indices[:split])
-        valid_sampler = torch.utils.data.sampler.SubsetRandomSampler(indices[split:])
-        self.train_loader = torch.utils.data.DataLoader(self.dataset,
+        self.train_loader = torch.utils.data.DataLoader(self.dataset_train,
                                                         batch_size=self.batch_size,
-                                                        sampler=train_sampler,
                                                         num_workers=self.workers)
-        self.valid_loader = torch.utils.data.DataLoader(self.dataset,
+        self.valid_loader = torch.utils.data.DataLoader(self.dataset_val,
                                                         batch_size=self.batch_size,
-                                                        sampler=valid_sampler,
                                                         num_workers=self.workers)
 
     def _train_one_epoch(self, epoch):
@@ -181,12 +184,37 @@ class VarDartsTrainer(BaseOneShotTrainer):
             meters.update(metrics)
             if self.log_frequency is not None and step % self.log_frequency == 0:
                 _logger.info('Epoch [%s/%s] Step [%s/%s]  %s', epoch + 1,
-                             self.num_epochs, step + 1, len(self.train_loader), meters)
+                             self.num_epochs, step + 1, len(self.valid_loader), meters)
 
     def _logits_and_loss(self, X, y):
         logits = self.model(X)
-        loss = self.loss(logits, y)
+        loss = self.elbo_loss(logits, y)
         return logits, loss
+
+    def elbo_loss(self, logits, y):
+        kl = 0
+
+        # kl_w part
+        for w, sigma in self.sigma_w.items():
+            kl += self._kl_normal_normal(
+                q_w_loc=w,
+                q_w_sigma=0.01 + torch.exp(w),
+                p_w_loc=torch.zeros_like(w),
+                p_w_sigma=0.01 + torch.exp(torch.ones_like(w))  # как eye эффективно сделать вместо ones_like?
+                )
+
+        # # combine kl with log-likelihood
+        # elbo = kl + self.loss(logits, y)
+        elbo = self.loss(logits, y)
+        return elbo
+
+    def _kl_normal_normal(self, q_w_loc, q_w_sigma, p_w_loc, p_w_sigma):
+
+        var_ratio = (p_w_sigma / q_w_sigma).pow(2)
+        t1 = ((p_w_loc - q_w_loc) / q_w_sigma).pow(2)
+
+        result = 0.5 * (var_ratio + t1 - 1 - var_ratio.log()).sum()
+        return result
 
     def _backward(self, val_X, val_y):
         """

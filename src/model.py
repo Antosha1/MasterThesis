@@ -1,37 +1,11 @@
-import operations
-
 import torch
 import torch.nn as nn
+
+import var_operations as ops
 
 from nni.retiarii.nn.pytorch import LayerChoice, InputChoice
 from nni.retiarii import model_wrapper
 from collections import OrderedDict
-
-
-class AuxiliaryHead(nn.Module):
-    """ Auxiliary head in 2/3 place of network to let the gradient flow well """
-
-    def __init__(self, input_size, C, n_classes):
-        """ assuming input size 7x7 or 8x8 """
-        assert input_size in [7, 8]
-        super().__init__()
-        self.net = nn.Sequential(
-            nn.ReLU(inplace=True),
-            nn.AvgPool2d(5, stride=input_size - 5, padding=0, count_include_pad=False),  # 2x2 out
-            nn.Conv2d(C, 128, kernel_size=1, bias=False),
-            nn.BatchNorm2d(128),
-            nn.ReLU(inplace=True),
-            nn.Conv2d(128, 768, kernel_size=2, bias=False),  # 1x1 out
-            nn.BatchNorm2d(768),
-            nn.ReLU(inplace=True)
-        )
-        self.linear = nn.Linear(768, n_classes)
-
-    def forward(self, x):
-        out = self.net(x)
-        out = out.view(out.size(0), -1)  # flatten
-        logits = self.linear(out)
-        return logits
 
 
 class Node(nn.Module):
@@ -44,15 +18,16 @@ class Node(nn.Module):
             choice_keys.append(f"{node_id}_p{i}")
             self.ops.append(
                 LayerChoice(OrderedDict([
-                    ("maxpool", operations.PoolBN('max', channels, 3, stride, 1, affine=False)),
-                    ("avgpool", operations.PoolBN('avg', channels, 3, stride, 1, affine=False)),
-                    ("skipconnect", nn.Identity() if stride == 1 else operations.FactorizedReduce(channels, channels, affine=False)),
-                    ("sepconv3x3", operations.SepConv(channels, channels, 3, stride, 1, affine=False)),
-                    ("sepconv5x5", operations.SepConv(channels, channels, 5, stride, 2, affine=False)),
-                    ("dilconv3x3", operations.DilConv(channels, channels, 3, stride, 2, 2, affine=False)),
-                    ("dilconv5x5", operations.DilConv(channels, channels, 5, stride, 4, 2, affine=False))
+                    ("maxpool", ops.PoolBN('max', channels, 3, stride, 1, affine=False)),
+                    ("avgpool", ops.PoolBN('avg', channels, 3, stride, 1, affine=False)),
+                    ("skipconnect", nn.Identity() if stride == 1 else ops.FactorizedReduce(channels, channels,
+                                                                                                  affine=False)),
+                    ("sepconv3x3", ops.SepConv(channels, channels, 3, stride, 1, affine=False)),
+                    ("sepconv5x5", ops.SepConv(channels, channels, 5, stride, 2, affine=False)),
+                    ("dilconv3x3", ops.DilConv(channels, channels, 3, stride, 2, 2, affine=False)),
+                    ("dilconv5x5", ops.DilConv(channels, channels, 5, stride, 4, 2, affine=False))
                 ]), label=choice_keys[-1]))
-        self.drop_path = operations.DropPath()
+        self.drop_path = ops.DropPath()
         self.input_switch = InputChoice(n_candidates=len(choice_keys), n_chosen=2, label=f"{node_id}_switch")
 
     def forward(self, prev_nodes):
@@ -72,10 +47,10 @@ class Cell(nn.Module):
         # If previous cell is reduction cell, current input size does not match with
         # output size of cell[k-2]. So the output[k-2] should be reduced by preprocessing.
         if reduction_p:
-            self.preproc0 = operations.FactorizedReduce(channels_pp, channels, affine=False)
+            self.preproc0 = ops.FactorizedReduce(channels_pp, channels, affine=False)
         else:
-            self.preproc0 = operations.StdConv(channels_pp, channels, 1, 1, 0, affine=False)
-        self.preproc1 = operations.StdConv(channels_p, channels, 1, 1, 0, affine=False)
+            self.preproc0 = ops.StdConv(channels_pp, channels, 1, 1, 0, affine=False)
+        self.preproc1 = ops.StdConv(channels_p, channels, 1, 1, 0, affine=False)
 
         # generate dag
         self.mutable_ops = nn.ModuleList()
@@ -93,21 +68,21 @@ class Cell(nn.Module):
         output = torch.cat(tensors[2:], dim=1)
         return output
 
+
 @model_wrapper
 class CNN(nn.Module):
 
-    def __init__(self, input_size, in_channels, channels, n_classes, n_layers, n_nodes=4,
-                 stem_multiplier=3, auxiliary=False):
+    def __init__(self, in_channels, channels, n_classes, n_layers, n_nodes=4,
+                 stem_multiplier=3):
         super().__init__()
         self.in_channels = in_channels
         self.channels = channels
         self.n_classes = n_classes
         self.n_layers = n_layers
-        self.aux_pos = 2 * n_layers // 3 if auxiliary else -1
 
         c_cur = stem_multiplier * self.channels
         self.stem = nn.Sequential(
-            nn.Conv2d(in_channels, c_cur, 3, 1, 1, bias=False),
+            ops.VariationalConv2d(in_channels, c_cur, 3, 1, 1, bias=False),
             nn.BatchNorm2d(c_cur)
         )
 
@@ -120,7 +95,7 @@ class CNN(nn.Module):
         for i in range(n_layers):
             reduction_p, reduction = reduction, False
             # Reduce featuremap size and double channels in 1/3 and 2/3 layer.
-            if i in [n_layers // 3, 2 * n_layers // 3]:
+            if i in [2 * n_layers // 3]:
                 c_cur *= 2
                 reduction = True
 
@@ -129,30 +104,22 @@ class CNN(nn.Module):
             c_cur_out = c_cur * n_nodes
             channels_pp, channels_p = channels_p, c_cur_out
 
-            if i == self.aux_pos:
-                self.aux_head = AuxiliaryHead(input_size // 4, channels_p, n_classes)
-
         self.gap = nn.AdaptiveAvgPool2d(1)
-        self.linear = nn.Linear(channels_p, n_classes)
+        self.linear = ops.VariationalLinear(channels_p, n_classes)
 
     def forward(self, x):
         s0 = s1 = self.stem(x)
 
-        aux_logits = None
         for i, cell in enumerate(self.cells):
             s0, s1 = s1, cell(s0, s1)
-            if i == self.aux_pos and self.training:
-                aux_logits = self.aux_head(s1)
 
         out = self.gap(s1)
         out = out.view(out.size(0), -1)  # flatten
         logits = self.linear(out)
 
-        if aux_logits is not None:
-            return logits, aux_logits
         return logits
 
     def drop_path_prob(self, p):
         for module in self.modules():
-            if isinstance(module, operations.DropPath):
+            if isinstance(module, ops.DropPath):
                 module.p = p
